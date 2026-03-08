@@ -1,284 +1,481 @@
-export default function LaunchCXWebsite() {
-  const startupDocs = [
-    'CRM Setup Guide (Pipedrive)',
-    'JustCall Sales Dialer Setup Guide',
-    'Lead Import Template (CSV)',
-    'Cold Call Script',
-    'Call Outcome Guide',
-    'Call Centre SOP',
-    'KPI Performance Tracker',
-    'QA Scorecard',
-    'Call Flow Diagram',
-    'Agent Daily Workflow Guide',
-    'Manager Setup Checklist',
-  ];
-
-  const outcomes = [
-    'Launch in 3–5 days',
-    'Save 60–70% on setup costs',
-    'Built for startups and small teams',
-    'Ready to generate leads immediately',
-  ];
-
-  const industries = [
-    'Real Estate',
-    'Insurance',
-    'Solar & Home Services',
-    'Marketing Agencies',
-    'B2B Services',
-    'Recruitment',
-  ];
-
-  const packages = [
-    {
-      name: 'Basic Startup',
-      price: '$1,200',
-      desc: 'Ready-to-Deploy Call Centre Toolkit for 1–5 agents.',
-      features: ['11 professional documents', 'CRM + dialer setup', 'Scripts, SOPs, KPIs, QA', 'Launch in 3–5 days'],
-      featured: true,
-    },
-    {
-      name: 'Full Call Centre',
-      price: '$2,500–$4,000',
-      desc: 'For businesses ready to deploy a larger, managed outbound team.',
-      features: ['Everything in Basic', 'Supervisor dashboards', '5–15 agent setup', '5–7 day launch support'],
-      featured: false,
-    },
-    {
-      name: 'Advanced + Training',
-      price: '$5,000–$8,000',
-      desc: 'For teams needing training, QA, coaching, and optional sourcing.',
-      features: ['Everything in Basic', 'Agent training', 'QA scorecards + coaching', 'Full team in 7–14 days'],
-      featured: false,
-    },
-  ];
-
-  return (
-    <div className="min-h-screen bg-slate-950 text-white">
-      <section className="relative overflow-hidden bg-slate-950">
-        <div className="absolute inset-0 bg-[radial-gradient(circle_at_top_left,_rgba(34,211,238,0.18),_transparent_28%),radial-gradient(circle_at_top_right,_rgba(59,130,246,0.22),_transparent_30%),radial-gradient(circle_at_bottom,_rgba(14,165,233,0.14),_transparent_35%)]" />
-        <div className="absolute inset-0 opacity-20" style={{ backgroundImage: 'linear-gradient(rgba(255,255,255,0.08) 1px, transparent 1px), linear-gradient(90deg, rgba(255,255,255,0.08) 1px, transparent 1px)', backgroundSize: '44px 44px' }} />
-
-        <div className="relative mx-auto max-w-7xl px-6 py-6 md:px-10">
-          <div className="flex flex-col gap-4 rounded-[2rem] border border-white/10 bg-white/5 px-5 py-4 backdrop-blur md:flex-row md:items-center md:justify-between">
-            <div className="flex items-center gap-4">
-              <div className="flex h-14 w-14 items-center justify-center rounded-2xl bg-gradient-to-br from-cyan-400 via-blue-500 to-sky-700 text-lg font-black shadow-lg shadow-cyan-500/20">
-                CX
-              </div>
-              <div>
-                <div className="text-2xl font-black tracking-tight">LaunchCX Consulting</div>
-                <div className="text-sm text-cyan-300">Powering Global Sales Teams</div>
-              </div>
-            </div>
-            <div className="flex flex-wrap gap-3">
-              <a href="#packages" className="rounded-2xl border border-white/15 bg-white/5 px-5 py-3 text-sm font-semibold text-white transition hover:bg-white/10">
-                View Packages
-              </a>
-              <a href="https://wa.me/27820476166" className="rounded-2xl bg-cyan-400 px-5 py-3 text-sm font-bold text-slate-950 shadow-xl shadow-cyan-500/20 transition hover:-translate-y-0.5">
-                Get Started
-              </a>
-            </div>
-          </div>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>LaunchCX Consulting</title>
+  <meta name="description" content="LaunchCX Consulting helps businesses launch virtual call centre systems, outbound sales teams, and lead generation infrastructure fast." />
+  <style>
+    :root {
+      --bg: #07111f;
+      --bg2: #0a1b31;
+      --card: rgba(255,255,255,0.06);
+      --line: rgba(255,255,255,0.12);
+      --text: #f8fbff;
+      --muted: #bfd3ea;
+      --accent: #38d5ff;
+      --accent2: #7ee7ff;
+      --dark: #06101d;
+      --success: #7fffd4;
+    }
+    * { box-sizing: border-box; }
+    html { scroll-behavior: smooth; }
+    body {
+      margin: 0;
+      font-family: Arial, Helvetica, sans-serif;
+      color: var(--text);
+      background:
+        radial-gradient(circle at top left, rgba(56,213,255,0.18), transparent 28%),
+        radial-gradient(circle at top right, rgba(59,130,246,0.22), transparent 30%),
+        linear-gradient(180deg, var(--bg), var(--bg2));
+      min-height: 100vh;
+    }
+    a { color: inherit; text-decoration: none; }
+    .container { width: min(1180px, calc(100% - 32px)); margin: 0 auto; }
+    .topbar {
+      margin-top: 18px;
+      padding: 16px 20px;
+      border: 1px solid var(--line);
+      border-radius: 26px;
+      background: rgba(255,255,255,0.05);
+      backdrop-filter: blur(10px);
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 16px;
+      flex-wrap: wrap;
+    }
+    .brand { display: flex; align-items: center; gap: 14px; }
+    .logo {
+      width: 58px; height: 58px; border-radius: 18px;
+      background: linear-gradient(135deg, #55e9ff, #0070d8);
+      display: grid; place-items: center;
+      font-weight: 900; font-size: 20px;
+      box-shadow: 0 10px 30px rgba(56,213,255,0.22);
+    }
+    .brand h2 { margin: 0; font-size: 28px; }
+    .brand p { margin: 4px 0 0; color: var(--accent2); font-size: 14px; }
+    .nav-actions { display: flex; gap: 12px; flex-wrap: wrap; }
+    .btn {
+      display: inline-block;
+      padding: 14px 20px;
+      border-radius: 18px;
+      font-weight: 700;
+      transition: 0.2s ease;
+    }
+    .btn:hover { transform: translateY(-1px); }
+    .btn-secondary {
+      border: 1px solid var(--line);
+      background: rgba(255,255,255,0.05);
+      color: white;
+    }
+    .btn-primary {
+      background: linear-gradient(135deg, var(--accent2), var(--accent));
+      color: #04111d;
+      box-shadow: 0 18px 40px rgba(56,213,255,0.25);
+    }
+    .hero {
+      display: grid;
+      grid-template-columns: 1.1fr 0.9fr;
+      gap: 34px;
+      align-items: center;
+      padding: 36px 0 72px;
+    }
+    .eyebrow {
+      display: inline-block;
+      border: 1px solid rgba(56,213,255,0.25);
+      background: rgba(56,213,255,0.08);
+      color: var(--accent2);
+      border-radius: 999px;
+      padding: 10px 16px;
+      font-weight: 700;
+      font-size: 14px;
+    }
+    h1 {
+      margin: 18px 0 16px;
+      font-size: clamp(42px, 7vw, 78px);
+      line-height: 0.95;
+      letter-spacing: -2px;
+    }
+    h1 span { color: var(--accent); }
+    .lead {
+      color: var(--muted);
+      font-size: 20px;
+      line-height: 1.7;
+      max-width: 720px;
+    }
+    .stats {
+      display: grid;
+      grid-template-columns: repeat(2, minmax(0,1fr));
+      gap: 14px;
+      margin: 28px 0;
+    }
+    .stat {
+      border: 1px solid var(--line);
+      background: rgba(255,255,255,0.05);
+      padding: 16px 18px;
+      border-radius: 20px;
+      color: #eef8ff;
+      font-weight: 700;
+    }
+    .hero-actions { display: flex; gap: 14px; flex-wrap: wrap; margin-top: 8px; }
+    .hero-card {
+      position: relative;
+      border: 1px solid var(--line);
+      background: linear-gradient(180deg, rgba(11,25,43,0.94), rgba(5,14,27,0.98));
+      border-radius: 30px;
+      padding: 24px;
+      box-shadow: 0 30px 70px rgba(0,0,0,0.35);
+      overflow: hidden;
+    }
+    .hero-card::before {
+      content: "";
+      position: absolute;
+      width: 220px; height: 220px;
+      right: -50px; top: -50px;
+      background: radial-gradient(circle, rgba(56,213,255,0.22), transparent 70%);
+      pointer-events: none;
+    }
+    .tag {
+      display: inline-block;
+      background: rgba(56,213,255,0.12);
+      color: var(--accent2);
+      border: 1px solid rgba(56,213,255,0.22);
+      padding: 9px 12px;
+      border-radius: 999px;
+      font-size: 12px;
+      font-weight: 800;
+      letter-spacing: 1px;
+      text-transform: uppercase;
+    }
+    .price {
+      display: inline-block;
+      margin-top: 14px;
+      background: linear-gradient(135deg, var(--accent2), var(--accent));
+      color: #04111d;
+      padding: 10px 16px;
+      font-size: 30px;
+      font-weight: 900;
+      border-radius: 18px;
+    }
+    .hero-card h3 { margin: 16px 0 10px; font-size: 34px; }
+    .hero-card p { color: var(--muted); line-height: 1.7; }
+    .mini-list { display: grid; gap: 10px; margin: 20px 0; }
+    .mini-list div {
+      background: rgba(255,255,255,0.05);
+      border: 1px solid rgba(255,255,255,0.08);
+      border-radius: 16px;
+      padding: 14px 16px;
+      color: #eef8ff;
+      font-weight: 600;
+    }
+    .deploy {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 12px;
+      padding: 16px 18px;
+      border-radius: 20px;
+      background: rgba(56,213,255,0.08);
+      border: 1px solid rgba(56,213,255,0.16);
+      flex-wrap: wrap;
+    }
+    section { padding: 18px 0 26px; }
+    .grid-3 { display: grid; grid-template-columns: repeat(3, minmax(0,1fr)); gap: 18px; }
+    .card {
+      border: 1px solid var(--line);
+      background: rgba(255,255,255,0.05);
+      border-radius: 28px;
+      padding: 28px;
+    }
+    .card h3, .card h4 { margin: 10px 0 10px; }
+    .muted { color: var(--muted); line-height: 1.7; }
+    .section-label {
+      color: var(--accent2);
+      font-size: 12px;
+      letter-spacing: 1.7px;
+      text-transform: uppercase;
+      font-weight: 800;
+    }
+    .section-title {
+      margin: 10px 0 12px;
+      font-size: clamp(30px, 5vw, 52px);
+      line-height: 1;
+    }
+    .packages { display: grid; grid-template-columns: repeat(3, minmax(0,1fr)); gap: 18px; }
+    .package {
+      border: 1px solid var(--line);
+      background: rgba(255,255,255,0.05);
+      border-radius: 28px;
+      padding: 28px;
+    }
+    .package.featured {
+      border-color: rgba(56,213,255,0.35);
+      background: linear-gradient(180deg, rgba(56,213,255,0.1), rgba(255,255,255,0.05));
+      box-shadow: 0 24px 50px rgba(56,213,255,0.1);
+    }
+    .package .pname {
+      color: var(--accent2);
+      text-transform: uppercase;
+      letter-spacing: 1.6px;
+      font-size: 12px;
+      font-weight: 800;
+    }
+    .package .pprice { margin: 14px 0; font-size: 44px; font-weight: 900; }
+    .feature-list { display: grid; gap: 10px; margin: 20px 0 24px; }
+    .feature-list div {
+      background: rgba(255,255,255,0.05);
+      border: 1px solid rgba(255,255,255,0.08);
+      border-radius: 14px;
+      padding: 13px 14px;
+      color: #eef8ff;
+    }
+    .two-col { display: grid; grid-template-columns: 1.1fr 0.9fr; gap: 18px; }
+    .doc-grid { display: grid; grid-template-columns: repeat(2, minmax(0,1fr)); gap: 12px; margin-top: 18px; }
+    .doc {
+      background: rgba(255,255,255,0.05);
+      border: 1px solid rgba(255,255,255,0.08);
+      border-radius: 18px;
+      padding: 15px;
+      color: #eef8ff;
+      font-size: 15px;
+      line-height: 1.4;
+    }
+    .industry-grid { display: grid; grid-template-columns: repeat(2, minmax(0,1fr)); gap: 12px; margin-top: 18px; }
+    .industry {
+      background: rgba(255,255,255,0.05);
+      border-radius: 16px;
+      padding: 14px;
+      text-align: center;
+      font-weight: 700;
+      border: 1px solid rgba(255,255,255,0.08);
+    }
+    .cta {
+      padding: 34px;
+      border-radius: 30px;
+      border: 1px solid rgba(56,213,255,0.2);
+      background: linear-gradient(135deg, rgba(56,213,255,0.12), rgba(30,64,175,0.08), rgba(255,255,255,0.04));
+      display: grid;
+      grid-template-columns: 1fr auto;
+      gap: 22px;
+      align-items: center;
+    }
+    .cta-actions { display: flex; flex-direction: column; gap: 12px; min-width: 270px; }
+    footer {
+      padding: 30px 0 60px;
+      color: #b4c7de;
+      text-align: center;
+      font-size: 14px;
+    }
+    @media (max-width: 980px) {
+      .hero, .two-col, .cta, .packages, .grid-3 { grid-template-columns: 1fr; }
+      .cta-actions { min-width: 0; }
+    }
+    @media (max-width: 680px) {
+      .stats, .doc-grid, .industry-grid { grid-template-columns: 1fr; }
+      .brand h2 { font-size: 22px; }
+      .hero { padding-top: 26px; }
+      .hero-card h3 { font-size: 28px; }
+      .package .pprice { font-size: 36px; }
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <div class="topbar">
+      <div class="brand">
+        <div class="logo">CX</div>
+        <div>
+          <h2>LaunchCX Consulting</h2>
+          <p>Powering Global Sales Teams</p>
         </div>
-
-        <div className="relative mx-auto grid max-w-7xl gap-12 px-6 pb-16 pt-8 md:px-10 lg:grid-cols-[1.15fr_0.85fr] lg:items-center lg:pb-24 lg:pt-12">
-          <div>
-            <div className="inline-flex items-center rounded-full border border-cyan-400/25 bg-cyan-400/10 px-4 py-2 text-sm font-semibold text-cyan-300">
-              All-Inclusive Virtual Call Centre Solutions
-            </div>
-            <h1 className="mt-6 max-w-4xl text-5xl font-black leading-[0.98] tracking-tight md:text-7xl">
-              Launch Your <span className="text-cyan-400">Outbound Sales Team</span> Without the Overhead.
-            </h1>
-            <p className="mt-6 max-w-2xl text-lg leading-8 text-slate-300 md:text-xl">
-              LaunchCX helps startups, agencies, and growth-focused businesses deploy remote call centre systems fast. From dialers and scripts to workflows and management tools, we give you the infrastructure to start generating leads immediately.
-            </p>
-
-            <div className="mt-8 grid gap-4 sm:grid-cols-2">
-              {outcomes.map((item) => (
-                <div key={item} className="rounded-2xl border border-white/10 bg-white/5 px-4 py-4 text-sm font-medium text-slate-100 backdrop-blur">
-                  <span className="mr-2 text-cyan-300">✓</span>
-                  {item}
-                </div>
-              ))}
-            </div>
-
-            <div className="mt-8 flex flex-wrap gap-4">
-              <a href="https://wa.me/27820476166" className="rounded-2xl bg-cyan-400 px-6 py-4 text-base font-bold text-slate-950 shadow-2xl shadow-cyan-500/20 transition hover:-translate-y-0.5">
-                Get Started
-              </a>
-              <a href="mailto:launchcx@outlook.com" className="rounded-2xl border border-white/15 bg-white/5 px-6 py-4 text-base font-semibold text-white transition hover:bg-white/10">
-                launchcx@outlook.com
-              </a>
-            </div>
-          </div>
-
-          <div className="relative">
-            <div className="absolute -inset-6 rounded-[2rem] bg-cyan-500/20 blur-3xl" />
-            <div className="relative overflow-hidden rounded-[2rem] border border-white/10 bg-gradient-to-br from-slate-900 via-blue-950 to-slate-950 p-6 shadow-2xl">
-              <div className="absolute right-0 top-0 h-48 w-48 rounded-full bg-cyan-400/10 blur-3xl" />
-              <div className="absolute bottom-0 left-0 h-40 w-40 rounded-full bg-blue-500/20 blur-3xl" />
-              <div className="relative rounded-[1.5rem] border border-cyan-400/20 bg-white/5 p-6 backdrop-blur">
-                <div className="flex items-start justify-between gap-4">
-                  <div>
-                    <div className="text-sm font-bold uppercase tracking-[0.25em] text-cyan-300">Featured Offer</div>
-                    <div className="mt-2 text-3xl font-black">Call Centre Startup System</div>
-                  </div>
-                  <div className="rounded-2xl bg-cyan-400 px-4 py-2 text-sm font-black text-slate-950">
-                    $1,200
-                  </div>
-                </div>
-
-                <div className="mt-6 rounded-2xl border border-white/10 bg-slate-950/60 p-5">
-                  <div className="text-sm text-slate-400">What you get</div>
-                  <div className="mt-2 text-2xl font-black">11 Professional Documents</div>
-                  <div className="mt-4 grid gap-3 text-sm text-slate-200">
-                    <div className="rounded-xl bg-white/5 px-4 py-3">CRM, dialer, and lead import setup</div>
-                    <div className="rounded-xl bg-white/5 px-4 py-3">Cold call script + call outcome structure</div>
-                    <div className="rounded-xl bg-white/5 px-4 py-3">SOPs, KPI tracker, and QA scorecard</div>
-                    <div className="rounded-xl bg-white/5 px-4 py-3">Manager checklist + daily workflow guide</div>
-                  </div>
-                </div>
-
-                <div className="mt-5 flex items-center justify-between rounded-2xl border border-cyan-400/20 bg-cyan-400/10 px-4 py-4">
-                  <div>
-                    <div className="text-sm text-cyan-200">Deployment time</div>
-                    <div className="text-xl font-black text-white">3–5 Days</div>
-                  </div>
-                  <a href="https://wa.me/27820476166" className="rounded-xl bg-white px-4 py-3 text-sm font-bold text-slate-950">
-                    Start Now
-                  </a>
-                </div>
-              </div>
-            </div>
-          </div>
-        </div>
-      </section>
-
-      <section className="mx-auto max-w-7xl px-6 py-8 md:px-10">
-        <div className="grid gap-6 md:grid-cols-3">
-          <div className="rounded-[2rem] border border-white/10 bg-white/5 p-8 backdrop-blur">
-            <div className="text-sm font-bold uppercase tracking-[0.25em] text-cyan-300">Why LaunchCX</div>
-            <h2 className="mt-3 text-3xl font-black">Built to Generate Revenue</h2>
-            <p className="mt-4 text-slate-300">
-              This is not generic admin support. LaunchCX is designed for outbound sales, lead generation, and scalable virtual call centre operations.
-            </p>
-          </div>
-          <div className="rounded-[2rem] border border-white/10 bg-white/5 p-8 backdrop-blur">
-            <div className="text-sm font-bold uppercase tracking-[0.25em] text-cyan-300">Core Positioning</div>
-            <h2 className="mt-3 text-3xl font-black">Every Business Needs a Sales Team</h2>
-            <p className="mt-4 text-slate-300">
-              Cold calling still generates real business. We make it easier and faster to deploy a working sales engine without building everything from scratch.
-            </p>
-          </div>
-          <div className="rounded-[2rem] border border-white/10 bg-white/5 p-8 backdrop-blur">
-            <div className="text-sm font-bold uppercase tracking-[0.25em] text-cyan-300">Fast Setup</div>
-            <h2 className="mt-3 text-3xl font-black">Remote-Ready Systems</h2>
-            <p className="mt-4 text-slate-300">
-              Perfect for virtual teams, startup founders, agencies, and businesses that need a call centre setup they can deploy and scale quickly.
-            </p>
-          </div>
-        </div>
-      </section>
-
-      <section id="packages" className="mx-auto max-w-7xl px-6 py-14 md:px-10">
-        <div className="mb-10 max-w-3xl">
-          <div className="text-sm font-bold uppercase tracking-[0.25em] text-cyan-300">Packages</div>
-          <h2 className="mt-3 text-4xl font-black md:text-5xl">Choose the Right LaunchCX Setup</h2>
-          <p className="mt-4 text-lg text-slate-300">
-            Start with the toolkit or move into full deployment and training. Every package is built to help you launch faster and operate more effectively.
-          </p>
-        </div>
-
-        <div className="grid gap-6 lg:grid-cols-3">
-          {packages.map((pkg) => (
-            <div
-              key={pkg.name}
-              className={
-                pkg.featured
-                  ? 'rounded-[2rem] border border-cyan-400/30 bg-gradient-to-b from-cyan-500/10 to-white/5 p-8 shadow-2xl shadow-cyan-500/10'
-                  : 'rounded-[2rem] border border-white/10 bg-white/5 p-8'
-              }
-            >
-              <div className="text-sm font-bold uppercase tracking-[0.25em] text-cyan-300">{pkg.name}</div>
-              <div className="mt-3 text-4xl font-black">{pkg.price}</div>
-              <p className="mt-4 text-slate-300">{pkg.desc}</p>
-              <div className="mt-6 space-y-3">
-                {pkg.features.map((feature) => (
-                  <div key={feature} className="rounded-xl border border-white/10 bg-white/5 px-4 py-3 text-sm text-slate-100">
-                    ✓ {feature}
-                  </div>
-                ))}
-              </div>
-              <a href="https://wa.me/27820476166" className="mt-6 inline-flex rounded-2xl bg-cyan-400 px-5 py-3 text-sm font-bold text-slate-950">
-                Get Started
-              </a>
-            </div>
-          ))}
-        </div>
-      </section>
-
-      <section className="mx-auto grid max-w-7xl gap-8 px-6 py-8 md:px-10 md:py-14 lg:grid-cols-[1.1fr_0.9fr]">
-        <div className="rounded-[2rem] border border-white/10 bg-white/5 p-8">
-          <div className="text-sm font-bold uppercase tracking-[0.25em] text-cyan-300">Package 1 Includes</div>
-          <h2 className="mt-3 text-4xl font-black">Ready-to-Deploy Call Centre Toolkit</h2>
-          <p className="mt-4 max-w-2xl text-slate-300">
-            Package 1 is positioned as a system, not just a set of files. It gives startups and small outbound teams a clean, structured operating foundation for sales calls, lead management, performance tracking, and day-to-day execution.
-          </p>
-          <div className="mt-6 grid gap-3 sm:grid-cols-2">
-            {startupDocs.map((item) => (
-              <div key={item} className="rounded-2xl border border-white/10 bg-slate-900/80 px-4 py-4 text-sm text-slate-200">
-                {item}
-              </div>
-            ))}
-          </div>
-        </div>
-
-        <div className="space-y-8">
-          <div className="rounded-[2rem] border border-white/10 bg-gradient-to-br from-cyan-500/10 to-blue-500/10 p-8">
-            <div className="text-sm font-bold uppercase tracking-[0.25em] text-cyan-300">Designed For</div>
-            <h3 className="mt-3 text-3xl font-black">Businesses That Need Leads</h3>
-            <ul className="mt-5 space-y-4 text-lg text-slate-200">
-              <li>✓ Startups launching outbound sales</li>
-              <li>✓ Businesses building a small call team</li>
-              <li>✓ Remote or virtual sales teams</li>
-              <li>✓ Agencies generating leads for clients</li>
-            </ul>
-          </div>
-
-          <div className="rounded-[2rem] border border-white/10 bg-white/5 p-8">
-            <div className="text-sm font-bold uppercase tracking-[0.25em] text-cyan-300">Great Fit For</div>
-            <div className="mt-5 grid grid-cols-2 gap-3">
-              {industries.map((item) => (
-                <div key={item} className="rounded-xl bg-slate-900 px-4 py-3 text-center text-sm font-semibold text-slate-200">
-                  {item}
-                </div>
-              ))}
-            </div>
-          </div>
-        </div>
-      </section>
-
-      <section className="mx-auto max-w-7xl px-6 py-8 md:px-10 md:py-14">
-        <div className="overflow-hidden rounded-[2rem] border border-cyan-400/20 bg-gradient-to-r from-cyan-500/10 via-blue-500/10 to-slate-900 p-8 md:p-10">
-          <div className="grid gap-8 lg:grid-cols-[1fr_auto] lg:items-center">
-            <div>
-              <div className="text-sm font-bold uppercase tracking-[0.25em] text-cyan-300">Call To Action</div>
-              <h2 className="mt-3 text-4xl font-black md:text-5xl">Ready to Build Your Sales Team?</h2>
-              <p className="mt-4 max-w-3xl text-lg text-slate-300">
-                Get a practical, high-impact call centre system that helps you launch quickly and start generating business. WhatsApp us directly or email LaunchCX to get moving.
-              </p>
-            </div>
-            <div className="flex flex-col gap-4">
-              <a href="https://wa.me/27820476166" className="rounded-2xl bg-cyan-400 px-6 py-4 text-center text-base font-bold text-slate-950 shadow-xl shadow-cyan-500/20">
-                WhatsApp 082 047 6166
-              </a>
-              <a href="mailto:launchcx@outlook.com" className="rounded-2xl border border-white/15 bg-white/5 px-6 py-4 text-center text-base font-semibold text-white">
-                launchcx@outlook.com
-              </a>
-            </div>
-          </div>
-        </div>
-      </section>
+      </div>
+      <div class="nav-actions">
+        <a class="btn btn-secondary" href="#packages">View Packages</a>
+        <a class="btn btn-primary" href="https://wa.me/27820476166">Get Started</a>
+      </div>
     </div>
-  );
-}
+
+    <div class="hero">
+      <div>
+        <div class="eyebrow">All-Inclusive Virtual Call Centre Solutions</div>
+        <h1>Launch Your <span>Outbound Sales Team</span> Without the Overhead.</h1>
+        <p class="lead">
+          LaunchCX helps startups, agencies, and growth-focused businesses deploy remote call centre systems fast. From dialers and scripts to workflows and management tools, we give you the infrastructure to start generating leads immediately.
+        </p>
+
+        <div class="stats">
+          <div class="stat">✓ Launch in 3–5 days</div>
+          <div class="stat">✓ Save 60–70% on setup costs</div>
+          <div class="stat">✓ Built for startups and small teams</div>
+          <div class="stat">✓ Ready to generate leads immediately</div>
+        </div>
+
+        <div class="hero-actions">
+          <a class="btn btn-primary" href="https://wa.me/27820476166">Get Started</a>
+          <a class="btn btn-secondary" href="mailto:launchcx@outlook.com">launchcx@outlook.com</a>
+        </div>
+      </div>
+
+      <div class="hero-card">
+        <div class="tag">Featured Offer</div>
+        <div class="price">$1,200</div>
+        <h3>Call Centre Startup System</h3>
+        <p>A ready-to-deploy outbound sales toolkit designed for startups and small teams.</p>
+
+        <div class="mini-list">
+          <div>CRM, dialer, and lead import setup</div>
+          <div>Cold call script + call outcome guide</div>
+          <div>SOPs, KPI tracker, and QA scorecard</div>
+          <div>Manager checklist + daily workflow guide</div>
+        </div>
+
+        <div class="deploy">
+          <div>
+            <div style="color:#bfefff;font-size:14px;">Deployment Time</div>
+            <div style="font-size:26px;font-weight:900;">3–5 Days</div>
+          </div>
+          <a class="btn btn-primary" style="padding:12px 18px;" href="https://wa.me/27820476166">Start Now</a>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <section>
+    <div class="container grid-3">
+      <div class="card">
+        <div class="section-label">Why LaunchCX</div>
+        <h3>Built to Generate Revenue</h3>
+        <p class="muted">This is not generic admin support. LaunchCX is designed for outbound sales, lead generation, and scalable virtual call centre operations.</p>
+      </div>
+      <div class="card">
+        <div class="section-label">Core Positioning</div>
+        <h3>Every Business Needs a Sales Team</h3>
+        <p class="muted">Cold calling still generates real business. We make it easier and faster to deploy a working sales engine without building everything from scratch.</p>
+      </div>
+      <div class="card">
+        <div class="section-label">Fast Setup</div>
+        <h3>Remote-Ready Systems</h3>
+        <p class="muted">Perfect for virtual teams, startup founders, agencies, and businesses that need a call centre setup they can deploy and scale quickly.</p>
+      </div>
+    </div>
+  </section>
+
+  <section id="packages">
+    <div class="container">
+      <div class="section-label">Packages</div>
+      <h2 class="section-title">Choose the Right LaunchCX Setup</h2>
+      <p class="muted" style="max-width:780px; font-size:18px;">Start with the toolkit or move into full deployment and training. Every package is built to help you launch faster and operate more effectively.</p>
+
+      <div class="packages" style="margin-top:24px;">
+        <div class="package featured">
+          <div class="pname">Basic Startup</div>
+          <div class="pprice">$1,200</div>
+          <p class="muted">Ready-to-Deploy Call Centre Toolkit for 1–5 agents.</p>
+          <div class="feature-list">
+            <div>✓ 11 professional documents</div>
+            <div>✓ CRM + dialer setup</div>
+            <div>✓ Scripts, SOPs, KPIs, QA</div>
+            <div>✓ Launch in 3–5 days</div>
+          </div>
+          <a class="btn btn-primary" href="https://wa.me/27820476166">Get Started</a>
+        </div>
+
+        <div class="package">
+          <div class="pname">Full Call Centre</div>
+          <div class="pprice">$2,500–$4,000</div>
+          <p class="muted">For businesses ready to deploy a larger, managed outbound team.</p>
+          <div class="feature-list">
+            <div>✓ Everything in Basic</div>
+            <div>✓ Supervisor dashboards</div>
+            <div>✓ 5–15 agent setup</div>
+            <div>✓ 5–7 day launch support</div>
+          </div>
+          <a class="btn btn-secondary" href="https://wa.me/27820476166">Get Started</a>
+        </div>
+
+        <div class="package">
+          <div class="pname">Advanced + Training</div>
+          <div class="pprice">$5,000–$8,000</div>
+          <p class="muted">For teams needing training, QA, coaching, and optional sourcing.</p>
+          <div class="feature-list">
+            <div>✓ Everything in Basic</div>
+            <div>✓ Agent training</div>
+            <div>✓ QA scorecards + coaching</div>
+            <div>✓ Full team in 7–14 days</div>
+          </div>
+          <a class="btn btn-secondary" href="https://wa.me/27820476166">Get Started</a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section>
+    <div class="container two-col">
+      <div class="card">
+        <div class="section-label">Package 1 Includes</div>
+        <h2 class="section-title" style="font-size:42px;">Ready-to-Deploy Call Centre Toolkit</h2>
+        <p class="muted">Package 1 is positioned as a system, not just a set of files. It gives startups and small outbound teams a clean, structured operating foundation for sales calls, lead management, performance tracking, and day-to-day execution.</p>
+        <div class="doc-grid">
+          <div class="doc">CRM Setup Guide (Pipedrive)</div>
+          <div class="doc">JustCall Sales Dialer Setup Guide</div>
+          <div class="doc">Lead Import Template (CSV)</div>
+          <div class="doc">Cold Call Script</div>
+          <div class="doc">Call Outcome Guide</div>
+          <div class="doc">Call Centre SOP</div>
+          <div class="doc">KPI Performance Tracker</div>
+          <div class="doc">QA Scorecard</div>
+          <div class="doc">Call Flow Diagram</div>
+          <div class="doc">Agent Daily Workflow Guide</div>
+          <div class="doc">Manager Setup Checklist</div>
+        </div>
+      </div>
+
+      <div style="display:grid; gap:18px;">
+        <div class="card">
+          <div class="section-label">Designed For</div>
+          <h3 style="font-size:34px;">Businesses That Need Leads</h3>
+          <div class="feature-list">
+            <div>✓ Startups launching outbound sales</div>
+            <div>✓ Businesses building a small call team</div>
+            <div>✓ Remote or virtual sales teams</div>
+            <div>✓ Agencies generating leads for clients</div>
+          </div>
+        </div>
+
+        <div class="card">
+          <div class="section-label">Great Fit For</div>
+          <div class="industry-grid">
+            <div class="industry">Real Estate</div>
+            <div class="industry">Insurance</div>
+            <div class="industry">Solar & Home Services</div>
+            <div class="industry">Marketing Agencies</div>
+            <div class="industry">B2B Services</div>
+            <div class="industry">Recruitment</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section>
+    <div class="container">
+      <div class="cta">
+        <div>
+          <div class="section-label">Call To Action</div>
+          <h2 class="section-title">Ready to Build Your Sales Team?</h2>
+          <p class="muted" style="font-size:18px; max-width:760px;">Get a practical, high-impact call centre system that helps you launch quickly and start generating business. WhatsApp us directly or email LaunchCX to get moving.</p>
+        </div>
+        <div class="cta-actions">
+          <a class="btn btn-primary" href="https://wa.me/27820476166">WhatsApp 082 047 6166</a>
+          <a class="btn btn-secondary" href="mailto:launchcx@outlook.com">launchcx@outlook.com</a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <footer>
+    LaunchCX Consulting • Powering Global Sales Teams
+  </footer>
+</body>
+</html>
